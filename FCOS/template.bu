@@ -32,18 +32,18 @@ systemd:
       enabled: true
       contents: |
         [Unit]
-	Description=Install Docker Compose Plugin
-	Wants=network-online.target
-	After=network-online.target
-	Before=zincati.service
-	ConditionPathExists=!/var/lib/%N.stamp
-	
-	[Service]
-	Type=oneshot
-	RemainAfterExit=yes
-	ExecStart=/usr/bin/rpm-ostree install docker-compose
-	ExecStart=/usr/bin/touch /var/lib/%N.stamp
-	ExecStart=/usr/bin/systemctl --no-block reboot
-
-	[Install]
-	WantedBy=multi-user.target
+        Description=Install Docker Compose Plugin
+        Wants=network-online.target
+        After=network-online.target
+        Before=zincati.service
+        ConditionPathExists=!/var/lib/%N.stamp
+        
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/rpm-ostree install docker-compose
+        ExecStart=/usr/bin/touch /var/lib/%N.stamp
+        ExecStart=/usr/bin/systemctl --no-block reboot
+        
+        [Install]
+        WantedBy=multi-user.target
