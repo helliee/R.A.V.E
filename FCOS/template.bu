@@ -1,0 +1,49 @@
+variant: fcos
+version: 1.6.0
+passwd:
+  users:
+    - name: sadmin
+      ssh_authorized_keys:
+        - ssh...
+storage:
+  files:
+    - path: /etc/NetworkManager/system-connections/enp2.nmconnection
+      mode: 0600
+      contents:
+        inline: |
+	  [connection]
+	  id=enp2
+	  type=ethernet
+	  interface-name=enp2
+	  [ipv4]
+	  address1=ip/cidr,gateway
+	  dhcp-hostname=
+	  dns=1.1.1.1;
+	  dns-search=
+	  may-fail=false
+	  method=manual
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: [hostname]
+systemd:
+  units:
+    - name: rpm-ostree-install-docker-compose.service
+      enabled: true
+      contents: |
+        [Unit]
+	Description=Install Docker Compose Plugin
+	Wants=network-online.target
+	After=network-online.target
+	Before=zincati.service
+	ConditionPathExists=!/var/lib/%N.stamp
+	
+	[Service]
+	Type=oneshot
+	RemainAfterExit=yes
+	ExecStart=/usr/bin/rpm-ostree install docker-compose
+	ExecStart=/usr/bin/touch /var/lib/%N.stamp
+	ExecStart=/usr/bin/systemctl --no-block reboot
+
+	[Install]
+	WantedBy=multi-user.target
