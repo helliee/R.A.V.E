@@ -11,17 +11,17 @@ storage:
       mode: 0600
       contents:
         inline: |
-	  [connection]
-	  id=enp2
-	  type=ethernet
-	  interface-name=enp2
-	  [ipv4]
-	  address1=ip/cidr,gateway
-	  dhcp-hostname=
-	  dns=1.1.1.1;
-	  dns-search=
-	  may-fail=false
-	  method=manual
+          [connection]
+          id=enp2
+          type=ethernet
+          interface-name=enp2
+          [ipv4]
+          address1=ip/cidr,gateway
+          dhcp-hostname=
+          dns=1.1.1.1;
+          dns-search=
+          may-fail=false
+          method=manual
     - path: /etc/hostname
       mode: 0644
       contents:
