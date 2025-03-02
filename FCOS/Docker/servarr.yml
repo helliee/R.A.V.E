@@ -75,14 +75,14 @@ services:
       - PGID=1001
       - TZ=America/Chicago
       - WEBUI_PORT=8080
-      - TORRENTING_PORT=6881
+      - TORRENTING_PORT=16686
     volumes:
       - /home/media/qbittorrent:/config:z
       - /var/data:/data:z
     ports:
       - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
+      - 16686:16686
+      - 16686:16686/udp
     restart: unless-stopped
   ombi:
     image: lscr.io/linuxserver/ombi:latest
@@ -124,18 +124,16 @@ services:
       - UN_SONARR_0_API_KEY=
       - UN_RADARR_0_URL=
       - UN_RADARR_0_API_KEY=
-  calibre:
-    image: lscr.io/linuxserver/calibre:latest
-    container_name: calibre
+  kavita:
+    image: lscr.io/linuxserver/kavita:latest
+    container_name: kavita
     environment:
       - PUID=1001
       - PGID=1001
       - TZ=America/Chicago
-      - CUSTOM_PORT=9090
     volumes:
-      - /home/media/calibre:/config:z
+      - /home/media/kavita:/config:z
+      - /var/data:/data:z
     ports:
-      - 9090:9090
-      - 8181:8181
-      - 8081:8081
+      - 5000:5000
     restart: unless-stopped
