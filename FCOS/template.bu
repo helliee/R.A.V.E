@@ -5,6 +5,8 @@ passwd:
     - name: [user]
       ssh_authorized_keys:
         - ssh...
+      groups:
+        - sudo
 storage:
   files:
     - path: /etc/NetworkManager/system-connections/enp2.nmconnection
