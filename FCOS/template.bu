@@ -9,14 +9,14 @@ passwd:
         - sudo
 storage:
   files:
-    - path: /etc/NetworkManager/system-connections/enp2.nmconnection
+    - path: /etc/NetworkManager/system-connections/Wired\ connection\ 1.nmconnection
       mode: 0600
       contents:
         inline: |
           [connection]
-          id=enp2
+          id=Wired connection 1
           type=ethernet
-          interface-name=enp2
+          interface-name=enp6s18
           [ipv4]
           address1=ip/cidr,gateway
           dhcp-hostname=
