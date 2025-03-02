@@ -35,11 +35,11 @@ storage:
           export EDITOR=vim
 systemd:
   units:
-    - name: rpm-ostree-install-docker-compose.service
+    - name: rpm-ostree-install-docker-compose-and-vim.service
       enabled: true
       contents: |
         [Unit]
-        Description=Install Docker Compose Plugin
+        Description=Install Docker Compose Plugin & Vim
         Wants=network-online.target
         After=network-online.target
         Before=zincati.service
@@ -49,27 +49,9 @@ systemd:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/usr/bin/rpm-ostree install docker-compose
+        ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive vim
         ExecStart=/usr/bin/touch /var/lib/%N.stamp
         ExecStart=/usr/bin/systemctl --no-block reboot
         
-        [Install]
-        WantedBy=multi-user.target
-    - name: rpm-ostree-install-vim.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Layer vim with rpm-ostree
-        Wants=network-online.target
-        After=network-online.target
-        Before=zincati.service
-        ConditionPathExists=!/var/lib/%N.stamp
-
-        [Service]
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive vim
-        ExecStart=/bin/touch /var/lib/%N.stamp
-        ExecStart=/bin/systemctl --no-block reboot
-
         [Install]
         WantedBy=multi-user.target
