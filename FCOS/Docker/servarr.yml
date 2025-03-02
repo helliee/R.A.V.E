@@ -124,3 +124,17 @@ services:
       - UN_SONARR_0_API_KEY=
       - UN_RADARR_0_URL=
       - UN_RADARR_0_API_KEY=
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/Chicago
+    volumes:
+      - /home/media/calibre:/config:z
+    ports:
+      - 8080:8080
+      - 8181:8181
+      - 8081:8081
+    restart: unless-stopped
