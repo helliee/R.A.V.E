@@ -2,7 +2,7 @@ variant: fcos
 version: 1.6.0
 passwd:
   users:
-    - name: sadmin
+    - name: [user]
       ssh_authorized_keys:
         - ssh...
 storage:
