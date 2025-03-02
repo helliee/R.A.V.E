@@ -131,10 +131,11 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=America/Chicago
+      - CUSTOM_PORT=9090
     volumes:
       - /home/media/calibre:/config:z
     ports:
-      - 8080:8080
+      - 9090:9090
       - 8181:8181
       - 8081:8081
     restart: unless-stopped
