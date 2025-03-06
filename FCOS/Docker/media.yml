@@ -152,16 +152,3 @@ services:
     ports:
       - 5000:5000
     restart: unless-stopped
-  makemkv:
-    image: jlesage/makemkv
-    container_name: makemkv
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/Chicago
-    volumes:
-      - /home/media/makemkv:/config:z
-      - /var/data:/data:z
-    ports:
-      - 5800:5800
-    restart: unless-stopped
