@@ -109,22 +109,6 @@ services:
     ports:
       - 5055:5055
     restart: unless-stopped
-  mariadb:
-    image: lscr.io/linuxserver/mariadb:latest
-    container_name: mariadb
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/Chicago
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=ombi
-      - MYSQL_USER=ombi
-      - MYSQL_PASSWORD=ombi
-    volumes:
-      - /home/media/mariadb:/config:z
-    ports:
-      - 3306:3306
-    restart: unless-stopped
   unpackerr:
     image: golift/unpackerr
     container_name: unpackerr
