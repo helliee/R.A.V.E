@@ -1,1 +1,9 @@
 services:
+  hugo:
+    image: hugomods/hugo:exts-non-root
+    command: server -D
+    volumes:
+      - /home/mdr/hugo_src:/src:z
+      - /home/mdr/hugo_cache:/tmp/hugo_cache:z
+    ports:
+      - 1313:1313
