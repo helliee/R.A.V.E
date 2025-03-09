@@ -39,7 +39,7 @@ systemd:
       enabled: true
       contents: |
         [Unit]
-        Description=Install Docker Compose Plugin & Vim
+        Description=Install Additional User Defined Packages
         Wants=network-online.target
         After=network-online.target
         Before=zincati.service
@@ -48,8 +48,10 @@ systemd:
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/usr/bin/rpm-ostree install docker-compose
+        ExecStart=/usr/bin/rpm-ostree install -y docker-compose
         ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive vim
+        ExecStart=/usr/bin/rpm-ostree install -y gh
+        ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive man-db
         ExecStart=/usr/bin/touch /var/lib/%N.stamp
         ExecStart=/usr/bin/systemctl --no-block reboot
         
