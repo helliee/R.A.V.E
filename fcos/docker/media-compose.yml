@@ -123,6 +123,7 @@ services:
       - UN_SONARR_0_API_KEY=
       - UN_RADARR_0_URL=
       - UN_RADARR_0_API_KEY=
+    restart: unless-stopped
   kavita:
     image: lscr.io/linuxserver/kavita:latest
     container_name: kavita
